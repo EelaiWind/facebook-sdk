@@ -149,6 +149,32 @@ class GraphAPI(object):
             post_args=data,
             method="POST")
 
+    #self ada function
+
+    def update_photo(self, facebook_post_id, **data):
+        """Update a wall post accordind to the object_id
+
+        graph.update_photo(
+            facebook_obj_id= xxxxxxxxx,
+            message= 'updatesomethig',
+        )
+
+        attachment adds a structured attachment to the status message
+        being posted to the Wall. It should be a dictionary of the form:
+        
+            {"name": "Link name"
+             "link": "http://www.example.com/",
+             "caption": "{*actor*} posted a new review",
+             "description": "This is a longer description of the attachment",
+             "picture": "http://www.example.com/thumbnail.jpg"}
+
+        """
+        assert self.access_token, "Write operations require an access token"
+        return self.request(
+            self.version + "/" + facebook_post_id + "/",
+            post_args=data,
+            method="POST")
+
     def put_wall_post(self, message, attachment={}, profile_id="me"):
         """Writes a wall post to the given profile's wall.
 
